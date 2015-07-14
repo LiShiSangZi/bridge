@@ -1,0 +1,22 @@
+{
+  "name": "Bridge",
+  "version": "0.0.1",
+  "description": "Bridge between gitlab and JIRA",
+  "main": "index.js",
+  "author": "gogocrow",
+  "license": "All rights reserved",
+  "scripts": {
+  },
+  "dependencies": {
+    "body-parser": "^1.10.2",
+    "express": "^4.9.7",
+    "jira": "^0.9.0",
+    "grunt": "^0.4.5"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "config": {
+    "unsafe-perm": true
+  }
+}
