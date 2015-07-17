@@ -25,7 +25,8 @@ app.set('port', process.env.PORT || 5000);
 app.use(bodyParser());
 
 app.use("/hook", function(req, res) {
-    if (req.body && req.body.commits && req.body.commits) {
+    console.log(req.body);
+    if (req.body && req.body.ref == 'refs/heads/develop' && req.body.commits && req.body.commits) {
         req.body.commits.forEach(function(commit) {
             var message = '';
             if (commit.message.indexOf(':') >= 0) {
@@ -39,6 +40,13 @@ app.use("/hook", function(req, res) {
         });
     }
     res.status(200).send(req.body);
+});
+
+app.use("/jenkins", function(req, res) {
+    if (req.body) {
+        console.log(req.body);
+    }
+    res.status(200).send({});
 });
 
 //start the app
