@@ -25,7 +25,6 @@ app.set('port', process.env.PORT || 5000);
 app.use(bodyParser());
 
 app.use("/hook", function(req, res) {
-    console.log(req.body);
     if (req.body && req.body.ref == 'refs/heads/develop' && req.body.commits && req.body.commits) {
         req.body.commits.forEach(function(commit) {
             var message = '';
@@ -34,8 +33,7 @@ app.use("/hook", function(req, res) {
             } else {
                 message = commit.message;
             }
-            jira.addComment(message, commit.author.name + ' pushed a ommit: [' + commit.id.substring(0, 8) + '|' + commit.url + '] on ' + commit.timestamp, function(error) {
-
+            jira.addComment(message, commit.author.name + ' pushed a commit: [' + commit.id.substring(0, 8) + '|' + commit.url + '] on ' + commit.timestamp, function(error) {
             });
         });
     }
